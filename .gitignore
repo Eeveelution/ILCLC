@@ -1,0 +1,8 @@
+ILCLC.sln.DotSettings.user
+ILCLC/bin
+ILCLC/obj
+ILCLC/packages
+ILCLC.Tests/bin
+ILCLC.Tests/obj
+ILCLC.Tests/packages
+packages/
