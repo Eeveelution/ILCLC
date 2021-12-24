@@ -10,7 +10,7 @@ namespace ILCLC {
         public string Name;
 
         public override string ToString() {
-            StringBuilder builder = new StringBuilder(".field");
+            StringBuilder builder = new StringBuilder(".field ");
 
             //Accessability Modifiers
             if (this.Public && !this.Private)

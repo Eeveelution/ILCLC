@@ -43,7 +43,7 @@ namespace ILCLC {
         };
 
         public static string ILSerialize(this Type type) {
-            if (type.IsPrimitive)
+            if (type.IsPrimitive || PrimitiveTypes.ContainsKey(type))
                 return PrimitiveTypes.GetValueOrDefault(type, "<what.the.fuck/<.>>");
 
             return $"[{type.Assembly.GetName().Name}]{type.Name}";
