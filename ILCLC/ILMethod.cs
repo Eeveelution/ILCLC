@@ -9,13 +9,14 @@ namespace ILCLC {
     }
 
     public class ILMethod {
-        public bool             Static;
-        public bool             Public;
-        public bool             Private;
-        public Type             ReturnType;
-        public List<ILTypeName> InputArguments;
-        public List<ILTypeName> LocalVariables;
-        public string           Name;
+        public   bool             Static;
+        public   bool             Public;
+        public   bool             Private;
+        internal bool             EntryPoint;
+        public   Type             ReturnType;
+        public   List<ILTypeName> InputArguments;
+        public   List<ILTypeName> LocalVariables;
+        public   string           Name;
 
         public override string ToString() {
             StringBuilder builder = new(".method ");
@@ -29,10 +30,7 @@ namespace ILCLC {
                 builder.Append($"static ");
 
             //Return Type
-            if (this.ReturnType.IsPrimitive)
-                builder.Append(this.ReturnType.Name.ToLower());
-            else
-                builder.Append(this.ReturnType.FullName);
+            builder.Append(this.ReturnType.ILSerialize());
 
             //Method Name
             builder.Append(" " + this.Name);
@@ -75,6 +73,10 @@ namespace ILCLC {
 
             //End of Defining Local Variables
             builder.Append(") ");
+
+            //If this is the Entry Point of the Assembly, make sure to tell IL
+            if(this.EntryPoint)
+                builder.Append(".entrypoint");
 
             //End of Function
             builder.Append("} ");
