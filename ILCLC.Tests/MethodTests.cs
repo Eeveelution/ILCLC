@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace ILCLC.Tests {
-    public class Tests {
+    public class MethodTests {
         [SetUp]
         public void Setup() {}
 
