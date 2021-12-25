@@ -12,8 +12,8 @@ namespace ILCLC.Structs {
         public override string ToString() {
             StringBuilder builder = new StringBuilder();
 
-            builder.Append(this.Type.FullName + " ");
-            builder.Append(this.Name          + " ");
+            builder.Append(this.Type.ILSerialize() + " ");
+            builder.Append(this.Name               + " ");
 
             return builder.ToString();
         }

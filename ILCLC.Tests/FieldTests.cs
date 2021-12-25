@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using NUnit.Framework;
 
@@ -14,8 +15,11 @@ namespace ILCLC.Tests {
             };
 
             string expectedPrimitiveFieldValue = $".field public static string CoolVar";
+            string gotPrimitiveFieldValue = primitiveTypeField.ToString();
 
-            Assert.AreEqual(expectedPrimitiveFieldValue, primitiveTypeField.ToString());
+            Assert.AreEqual(expectedPrimitiveFieldValue, gotPrimitiveFieldValue);
+
+            Console.WriteLine(gotPrimitiveFieldValue);
 
             ILField complexTypeField = new ILField {
                 Name    = "ServerStream",
@@ -26,8 +30,11 @@ namespace ILCLC.Tests {
             };
 
             string expectedComplexFieldValue = $".field private [System.Private.CoreLib]MemoryStream ServerStream";
+            string gotComplexFieldValue = complexTypeField.ToString();
 
-            Assert.AreEqual(expectedComplexFieldValue, complexTypeField.ToString());
+            Assert.AreEqual(expectedComplexFieldValue, gotComplexFieldValue);
+
+            Console.WriteLine(gotComplexFieldValue);
 
             Assert.Pass();
         }

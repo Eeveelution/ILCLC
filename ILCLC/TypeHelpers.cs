@@ -41,6 +41,8 @@ namespace ILCLC {
                 typeof(uint), "unsigned int32"
             }, {
                 typeof(ulong), "unsigned int16"
+            }, {
+                typeof(void), "void"
             },
         };
         /// <summary>

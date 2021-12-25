@@ -16,9 +16,18 @@ namespace ILCLC {
         /// Accessibility Modifier, is it static? or in other words, is it part of the Class or the Class instance?
         /// </summary>
         public bool Static { get; set; }
+        /// <summary>
+        /// Name of the Class
+        /// </summary>
         public string Name;
 
+        /// <summary>
+        /// All the Fields present in the Class
+        /// </summary>
         public List<ILField> Fields;
+        /// <summary>
+        /// All the Methods present in the Class
+        /// </summary>
         public List<ILMethod> Methods;
 
         public override string ToString() {

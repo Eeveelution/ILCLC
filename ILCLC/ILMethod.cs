@@ -56,8 +56,11 @@ namespace ILCLC {
             //Return Type
             builder.Append(this.ReturnType.ILSerialize());
 
+            //Formatting
+            builder.Append('\n');
+
             //Method Name
-            builder.Append(" " + this.Name);
+            builder.Append("\t" + this.Name);
 
             //Argument List Begin
             builder.Append("( ");
@@ -74,10 +77,14 @@ namespace ILCLC {
             //Argument List End, and hint that this is CIL
             builder.Append(") cil managed ");
 
+            //Formatting
+            builder.Append('\n');
+
             //Beginning of Function
-            builder.Append("{ ");
+            builder.Append("{ \n");
 
             //Defining Local Variables
+            builder.Append('\t');
             builder.Append(".locals init ( ");
 
             for (int i = 0; i != this.LocalVariables.Count; i++) {
@@ -88,11 +95,11 @@ namespace ILCLC {
                 builder.Append(currentArgument.ToString());
 
                 if (i != this.LocalVariables.Count - 1)
-                    builder.Append(", ");
+                    builder.Append(", \n");
             }
 
             //End of Defining Local Variables
-            builder.Append(") ");
+            builder.Append(") \n");
 
             //If this is the Entry Point of the Assembly, make sure to tell IL
             if(this.EntryPoint)
