@@ -1,17 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ILCLC.PartialSerializables;
+using ILCLC.Structs;
 
 namespace ILCLC {
-    public struct ILTypeName {
-        public string Name;
-        public Type   Type;
-    }
-
-    public class ILMethod {
-        public   bool             Static;
-        public   bool             Public;
-        public   bool             Private;
+    public class ILMethod : IAccessible {
+        public bool Public { get; set; }
+        public bool Private { get; set; }
+        public bool Static { get; set; }
         internal bool             EntryPoint;
         public   Type             ReturnType;
         public   List<ILTypeName> InputArguments;
@@ -22,12 +19,7 @@ namespace ILCLC {
             StringBuilder builder = new(".method ");
 
             //Accessability Modifiers
-            if (this.Public && !this.Private)
-                builder.Append($"public ");
-            if (this.Private && !this.Public)
-                builder.Append($"private ");
-            if (this.Static)
-                builder.Append($"static ");
+            builder.Append((this as IAccessible).GetAccessabilityModifiers());
 
             //Return Type
             builder.Append(this.ReturnType.ILSerialize());
@@ -41,14 +33,11 @@ namespace ILCLC {
             for (int i = 0; i != this.InputArguments.Count; i++) {
                 ILTypeName currentArgument = this.InputArguments[i];
 
-                //Full Type Name followed up by Name
-                builder.Append(currentArgument.Type.FullName + " ");
-                builder.Append(currentArgument.Name          + " ");
+                builder.Append(currentArgument.ToString());
 
                 if (i != this.InputArguments.Count - 1)
                     builder.Append(", ");
             }
-
 
             //Argument List End, and hint that this is CIL
             builder.Append(") cil managed ");
@@ -64,8 +53,7 @@ namespace ILCLC {
 
                 //IL Locals require an Index, a type, and a optional name
                 builder.Append($"[{i}] ");
-                builder.Append(currentArgument.Type.FullName + " ");
-                builder.Append(currentArgument.Name          + " ");
+                builder.Append(currentArgument.ToString());
 
                 if (i != this.LocalVariables.Count - 1)
                     builder.Append(", ");

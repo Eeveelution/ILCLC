@@ -1,14 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Reflection.Metadata;
+﻿using System.Collections.Generic;
 
 namespace ILCLC {
     public class ILAssembly {
-        public List<ILClass> Classes = new();
+        public  List<ILClass>  Classes = new();
+        public  List<ILMethod> Methods = new();
+        private ILMethod       _entryPoint;
 
         public void ExportAsIL() {
-            Assembly assembly = Assembly.GetExecutingAssembly();
+
+        }
+
+        public void SetEntrypoint(ILMethod method) {
+            if (this._entryPoint != null)
+                this._entryPoint.EntryPoint = false;
+
+            this._entryPoint             = method;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ILCLC.Structs;
 using NUnit.Framework;
 
 namespace ILCLC.Tests {

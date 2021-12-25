@@ -1,11 +1,12 @@
 using System;
 using System.Text;
+using ILCLC.PartialSerializables;
 
 namespace ILCLC {
-    public class ILField {
-        public bool   Public;
-        public bool   Private;
-        public bool   Static;
+    public class ILField : IAccessible {
+        public bool Public { get; set; }
+        public bool Private { get; set; }
+        public bool Static { get; set; }
         public Type   Type;
         public string Name;
 
@@ -13,12 +14,7 @@ namespace ILCLC {
             StringBuilder builder = new StringBuilder(".field ");
 
             //Accessability Modifiers
-            if (this.Public && !this.Private)
-                builder.Append($"public ");
-            if (this.Private && !this.Public)
-                builder.Append($"private ");
-            if (this.Static)
-                builder.Append($"static ");
+            builder.Append((this as IAccessible).GetAccessabilityModifiers());
 
             //Type
             builder.Append(this.Type.ILSerialize());
