@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace ILCLC {
     public static class TypeHelpers {
+        /// <summary>
+        /// A Dictionary to Translate between C# Types and IL Types
+        /// </summary>
         public static Dictionary<Type, string> PrimitiveTypes = new() {
             {
                 typeof(bool), "bool"
@@ -40,7 +43,11 @@ namespace ILCLC {
                 typeof(ulong), "unsigned int16"
             },
         };
-
+        /// <summary>
+        /// Serializes a Type to a IL Valid Typename
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns>IL Type</returns>
         public static string ILSerialize(this Type type) {
             if (type.IsPrimitive || PrimitiveTypes.ContainsKey(type))
                 return PrimitiveTypes.GetValueOrDefault(type, "<what.the.fuck/<.>>");

@@ -2,6 +2,9 @@ using System;
 using System.Text;
 
 namespace ILCLC.Structs {
+    /// <summary>
+    /// Helper Struct that contains both a Name and a Type
+    /// </summary>
     public struct ILTypeName {
         public string Name;
         public Type   Type;
